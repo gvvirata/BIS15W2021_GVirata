@@ -1,0 +1,48 @@
+---
+title: "RMarkdown Practice"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r arithmetic-ex-1}
+93472835+43
+```
+
+```{r arithmetic-ex-2}
+934283-394712830
+```
+
+```{r arithmetic-ex-3}
+20934*23984
+```
+
+```{r arithmetic-ex-4}
+9348/91848
+```
+
+# This is My First Title
+
+## This is a Smaller Title
+
+### This is an Even Smaller Title
+
+_I am italicizing_
+
+**Now I am making the text bold**
+
+Here is my [email](mailto:gvvirata@ucdavis.edu)
+
+```{r message=FALSE, warning=FALSE}
+#install.packages("tidyverse")
+library("tidyverse")
+```
+
+```{r}
+ggplot(mtcars, aes(x = factor(cyl))) +
+    geom_bar()
+```
