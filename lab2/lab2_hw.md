@@ -132,7 +132,7 @@ mean(jill)
 10. Use the data matrix to perform one calculation or operation of your interest.
 
 ```r
-average_per_scientist = "Average Per Scientist" <- colMeans(spring_matrix)
+average_per_scientist <- colMeans(spring_matrix)
 additional_spring_matrix <- rbind(spring_matrix, average_per_scientist)
 additional_spring_matrix
 ```

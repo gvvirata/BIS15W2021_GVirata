@@ -491,7 +491,7 @@ mean(jill)</code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li>Use the data matrix to perform one calculation or operation of your interest.</li>
 </ol>
-<pre class="r"><code>average_per_scientist = &quot;Average Per Scientist&quot; &lt;- colMeans(spring_matrix)
+<pre class="r"><code>average_per_scientist &lt;- colMeans(spring_matrix)
 additional_spring_matrix &lt;- rbind(spring_matrix, average_per_scientist)
 additional_spring_matrix</code></pre>
 <pre><code>                          Jill    Steve   Susan
