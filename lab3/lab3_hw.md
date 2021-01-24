@@ -1,7 +1,7 @@
 ---
 title: "Lab 3 Homework"
 author: "Geralin Love Virata"
-date: "2021-01-13"
+date: "2021-01-24"
 output:
   html_document: 
     theme: spacelab
@@ -21,7 +21,7 @@ getwd()
 ```
 
 ```
-## [1] "/Users/geralinvirata/Desktop/BIS15W2021_GVirata/lab3"
+## [1] "/Users/jmledford/Desktop/BIS15W2021_GVirata/lab3"
 ```
 
 ## Mammals Sleep
