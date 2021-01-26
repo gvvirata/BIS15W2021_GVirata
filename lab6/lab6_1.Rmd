@@ -50,10 +50,11 @@ remotes::install_github("allisonhorst/palmerpenguins")
 ## dplyr Practice
 1. Let's do a bit more practice to make sure that we understand `select()`, `filter()`, and `mutate()`. Start by building a new data frame `msleep24` from the `msleep` data that: contains the `name` and `vore` variables along with a new column called `sleep_total_24` which is the amount of time a species sleeps expressed as a proportion of a 24-hour day. Remove any rows with NA's and restrict the `sleep_total_24` values to less than 0.3. Arrange the output in descending order.  
 ```{r}
-msleep24 <-  
-  mutate(msleep, sleep_total_24 = sleep_total /24) %>%
-  select(name, vore, sleep_total_24) %>%
-  filter(sleep_total_24 < 0.3) %>%
+msleep24 <- msleep %>%
+  mutate(sleep_total_24=sleep_total/24) %>% 
+  select(name, vore, sleep_total_24) %>% 
+  filter(!is.na(vore)) %>% 
+  filter(sleep_total_24<0.3) %>% 
   arrange(desc(sleep_total_24))
 msleep24
 ```
