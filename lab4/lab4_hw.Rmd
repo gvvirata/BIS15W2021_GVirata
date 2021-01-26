@@ -39,48 +39,53 @@ homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 ```{r comment=NA}
 dim(homerange)
 ```
+
 ```{r comment=NA}
 colnames(homerange)
 ```
+
 ```{r comment=NA}
-str(homerange)
+#str(homerange)
 ```
+
 ```{r comment=NA}
-summary(homerange)
+#summary(homerange)
 ```
 
 **3. Change the class of the variables `taxon` and `order` to factors and display their levels.**  
 ```{r comment=NA}
 homerange$taxon <- as.factor(homerange$taxon)
 ```
+
 ```{r comment=NA}
 class(homerange$taxon)
 ```
+
 ```{r comment=NA}
 levels(homerange$taxon)
 ```
+
 ```{r comment=NA}
 homerange$order <- as.factor(homerange$order)
 ```
+
 ```{r comment=NA}
 class(homerange$order)
 ```
+
 ```{r comment=NA}
 levels(homerange$order)
 ```
 
-
 **4. What taxa are represented in the `homerange` data frame? Make a new data frame `taxa` that is restricted to taxon, common name, class, order, family, genus, species.**  
 ```{r comment=NA}
 taxa <- select(homerange, taxon, common.name, class, order, family, genus, species)
-taxa
 ```
 Birds, lake fishes, lizards, mammals, marine fish, river fishes, snakes, tortoises, and turtles are represented in the 'homerange' data frame.
 
 **5. The variable `taxon` identifies the large, common name groups of the species represented in `homerange`. Make a table the shows the counts for each of these `taxon`.**  
 ```{r comment=NA}
 taxon_counts <- table(homerange$taxon)
-taxon_counts
 ```
 
 **6. The species in `homerange` are also classified into trophic guilds. How many species are represented in each trophic guild.**  
@@ -92,17 +97,17 @@ trophic_guild_counts
 **7. Make two new data frames, one which is restricted to carnivores and another that is restricted to herbivores.**  
 ```{r comment=NA}
 carnivores <- data.frame(subset(homerange, trophic.guild == "carnivore"))
-carnivores
 ```
+
 ```{r comment=NA}
 herbivores <- data.frame(subset(homerange, trophic.guild == "herbivore"))
-herbivores
 ```
 
 **8. Do herbivores or carnivores have, on average, a larger `mean.hra.m2`? Remove any NAs from the data.**  
 ```{r comment=NA}
 mean(carnivores$mean.hra.m2, na.rm = TRUE)
 ```
+
 ```{r comment=NA}
 mean(herbivores$mean.hra.m2, na.rm = TRUE)
 ```
@@ -115,6 +120,7 @@ deer <- select(deer_finder, mean.mass.g, log10.mass, family, genus, species)
 deer_arranged <- arrange(deer, desc(log10.mass))
 deer_arranged
 ```
+
 ```{r comment=NA}
 alces <- filter(homerange, species == "alces")
 alces_name <- alces$common.name
@@ -127,10 +133,12 @@ The alces (common name: moose) is the largest deer.
 snake_finder <- filter(homerange, taxon == "snakes")
 snake_finder #creating a new data frame only containing animals in the snake taxon
 ```
+
 ```{r comment=NA}
 smallest_hra <- min(snake_finder$mean.hra.m2) #determining the smallest 'mean.hra.m2' value
 smallest_hra
 ```
+
 ```{r comment=NA}
 snake_identity <- filter(snake_finder, mean.hra.m2 == 200) #identifying the snake species with homerange of 200
 snake_identity$species
