@@ -69,7 +69,7 @@ sydneybeaches <-read_csv(here("lab8", "data", "sydneybeaches.csv")) %>% janitor:
 ```{r comments=NA}
 sydneybeaches
 ```
-The data set does not follow all three conventions of the tidyverse, so it is, therefore, untidy. Not every variable has its own column, and the data is in wide format.
+The data set does follow all three conventions of the tidyverse, so it is, therefore, tidy. Every variable has its own column, every cell has one value, and each observation has its own row. The data is in long format.
 
 3. We are only interested in the variables site, date, and enterococci_cfu_100ml. Make a new object focused on these variables only. Name the object `sydneybeaches_long`
 ```{r comments=NA}

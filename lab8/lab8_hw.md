@@ -1,7 +1,7 @@
 ---
 title: "Lab 8 Homework"
 author: "Geralin Love Virata"
-date: "2021-02-03"
+date: "2021-02-04"
 output:
   html_document: 
     theme: spacelab
@@ -184,7 +184,7 @@ sydneybeaches
 ## 10       25 Sydney C… Randwick… Clove…      151.    -33.9 25/0…                0
 ## # … with 3,680 more rows
 ```
-The data set does not follow all three conventions of the tidyverse, so it is, therefore, untidy. Not every variable has its own column, and the data is in wide format.
+The data set does follow all three conventions of the tidyverse, so it is, therefore, tidy. Every variable has its own column, every cell has one value, and each observation has its own row. The data is in long format.
 
 3. We are only interested in the variables site, date, and enterococci_cfu_100ml. Make a new object focused on these variables only. Name the object `sydneybeaches_long`
 
