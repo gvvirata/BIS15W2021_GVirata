@@ -214,14 +214,14 @@ city_costs
 ## 10 Pomona College                          Claremont   CA     91711-63…    64870
 ## # … with 331 more rows
 ```
-Harvey Mudd College has the highest overall average cost of $69,355. It is located in Claremont, CA 91711.
+Harvey Mudd College has the highest overall annual cost of $69,355. It is located in Claremont, CA 91711.
 
 ```r
 city_total_costs <- 
   colleges %>%
   group_by(city) %>%
-  summarise(total_costs = sum(costt4_a, na.rm=T)) %>%
-  arrange(desc(total_costs))
+  summarise(avg_costs = mean(costt4_a, na.rm=T)) %>%
+  arrange(desc(avg_costs))
 ```
 
 ```
@@ -234,60 +234,57 @@ city_total_costs
 
 ```
 ## # A tibble: 161 x 2
-##    city          total_costs
-##    <chr>               <dbl>
-##  1 Los Angeles        611936
-##  2 San Francisco      436999
-##  3 San Diego          373941
-##  4 Claremont          332490
-##  5 Oakland            162814
-##  6 Pasadena           136849
-##  7 Irvine             130502
-##  8 Riverside          127931
-##  9 Santa Barbara      108267
-## 10 Stockton            96476
+##    city                avg_costs
+##    <chr>                   <dbl>
+##  1 Claremont               66498
+##  2 Malibu                  66152
+##  3 Valencia                64686
+##  4 Orange                  64501
+##  5 Redlands                61542
+##  6 Moraga                  61095
+##  7 Atherton                56035
+##  8 Thousand Oaks           54373
+##  9 Rancho Palos Verdes     50758
+## 10 La Verne                50603
 ## # … with 151 more rows
 ```
-If we examine which city has the highest total of average costs from all its institutions, Los Angeles, CA is the city whose combined average costs from all its colleges is the highest with a total of $611,936.
+Claremont, CA has the highest average annual cost for their institutions.
 
 5. Based on your answer to #4, make a plot that compares the cost of the individual colleges in the most expensive city. Bonus! Add UC Davis here to see how it compares :>).
 
 ```r
 colleges %>%
-  filter(city == "Los Angeles" | instnm == "University of California-Davis") %>%
+  filter(city == "Claremont" | instnm == "University of California-Davis") %>%
   ggplot(aes(x=instnm, y=costt4_a)) +
   geom_col()
 ```
 
 ```
-## Warning: Removed 9 rows containing missing values (position_stack).
+## Warning: Removed 2 rows containing missing values (position_stack).
 ```
 
 ![](lab9_hw_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
-Here is a summary of the plot, showing the exact average cost for each institution.
+Here is a summary of the plot, showing the exact annual costs for each institution.
 
 ```r
 colleges %>%
-  filter(city == "Los Angeles" | instnm == "University of California-Davis") %>%
+  filter(city == "Claremont" | instnm == "University of California-Davis") %>%
   select(city, instnm, costt4_a) %>%
   arrange(desc(costt4_a))
 ```
 
 ```
-## # A tibble: 25 x 3
-##    city        instnm                                                   costt4_a
-##    <chr>       <chr>                                                       <dbl>
-##  1 Los Angeles Southern California Institute of Architecture               67225
-##  2 Los Angeles University of Southern California                           67064
-##  3 Los Angeles Occidental College                                          67046
-##  4 Los Angeles Loyola Marymount University                                 60371
-##  5 Los Angeles Otis College of Art and Design                              56519
-##  6 Los Angeles American Academy of Dramatic Arts-Los Angeles               51581
-##  7 Los Angeles Mount Saint Mary's University                               50406
-##  8 Los Angeles FIDM-Fashion Institute of Design & Merchandising-Los An…    46291
-##  9 Los Angeles American Jewish University                                  36286
-## 10 Davis       University of California-Davis                              33904
-## # … with 15 more rows
+## # A tibble: 8 x 3
+##   city      instnm                         costt4_a
+##   <chr>     <chr>                             <dbl>
+## 1 Claremont Harvey Mudd College               69355
+## 2 Claremont Claremont McKenna College         66325
+## 3 Claremont Scripps College                   66060
+## 4 Claremont Pitzer College                    65880
+## 5 Claremont Pomona College                    64870
+## 6 Davis     University of California-Davis    33904
+## 7 Claremont Claremont Graduate University        NA
+## 8 Claremont Claremont School of Theology         NA
 ```
 
 6. The column `ADM_RATE` is the admissions rate by college and `C150_4_POOLED` is the four-year completion rate. Use a scatterplot to show the relationship between these two variables. What do you think this means?

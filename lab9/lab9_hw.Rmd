@@ -89,28 +89,28 @@ city_costs <-
   arrange(desc(costt4_a))
 city_costs
 ```
-Harvey Mudd College has the highest overall average cost of $69,355. It is located in Claremont, CA 91711.
+Harvey Mudd College has the highest overall annual cost of $69,355. It is located in Claremont, CA 91711.
 ```{r}
 city_total_costs <- 
   colleges %>%
   group_by(city) %>%
-  summarise(total_costs = sum(costt4_a, na.rm=T)) %>%
-  arrange(desc(total_costs))
+  summarise(avg_costs = mean(costt4_a, na.rm=T)) %>%
+  arrange(desc(avg_costs))
 city_total_costs
 ```
-If we examine which city has the highest total of average costs from all its institutions, Los Angeles, CA is the city whose combined average costs from all its colleges is the highest with a total of $611,936.
+Claremont, CA has the highest average annual cost for their institutions.
 
 5. Based on your answer to #4, make a plot that compares the cost of the individual colleges in the most expensive city. Bonus! Add UC Davis here to see how it compares :>).
 ```{r}
 colleges %>%
-  filter(city == "Los Angeles" | instnm == "University of California-Davis") %>%
+  filter(city == "Claremont" | instnm == "University of California-Davis") %>%
   ggplot(aes(x=instnm, y=costt4_a)) +
   geom_col()
 ```
-Here is a summary of the plot, showing the exact average cost for each institution.
+Here is a summary of the plot, showing the exact annual costs for each institution.
 ```{r}
 colleges %>%
-  filter(city == "Los Angeles" | instnm == "University of California-Davis") %>%
+  filter(city == "Claremont" | instnm == "University of California-Davis") %>%
   select(city, instnm, costt4_a) %>%
   arrange(desc(costt4_a))
 ```
