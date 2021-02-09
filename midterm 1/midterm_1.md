@@ -1,7 +1,7 @@
 ---
 title: "Midterm 1"
 author: "Geralin Love Virata"
-date: "2021-01-27"
+date: "2021-02-09"
 output:
   html_document: 
     theme: spacelab
@@ -107,12 +107,15 @@ elephants
 10  11.7   233  M    
 # … with 278 more rows
 ```
-
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 **5. (2 points) How many male and female elephants are represented in the data?**
 
 ```r
 elephants %>%
-  count(sex, na.rm = T)
+  count(sex, na.rm = T) # notice that by adding na.rm=T here it gets added as a variable in the table
 ```
 
 ```
@@ -122,6 +125,21 @@ elephants %>%
 1 F     TRUE    150
 2 M     TRUE    138
 ```
+There are no NA's in the sex variable.
+
+```r
+elephants %>% 
+  count(sex)
+```
+
+```
+## # A tibble: 2 x 2
+##   sex       n
+## * <fct> <int>
+## 1 F       150
+## 2 M       138
+```
+</div>
 
 **6. (2 points) What is the average age all elephants in the data?**
 
@@ -151,7 +169,7 @@ elephants %>%
 ```
 # A tibble: 2 x 4
   sex   mean_age mean_height total_count
-  <fct>    <dbl>       <dbl>       <int>
+* <fct>    <dbl>       <dbl>       <int>
 1 F        12.8         190.         150
 2 M         8.95        185.         138
 ```
@@ -171,7 +189,7 @@ elephants %>%
 ```
 # A tibble: 2 x 5
   sex   mean_height min_height max_height total_count
-  <fct>       <dbl>      <dbl>      <dbl>       <int>
+* <fct>       <dbl>      <dbl>      <dbl>       <int>
 1 F            233.       206.       278.          25
 2 M            273.       237.       304.           8
 ```
@@ -307,6 +325,10 @@ is.factor(vertebrate$LandUse)
 [1] TRUE
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 **10. (4 points) For the transects with high and moderate hunting intensity, how does the average diversity of birds and mammals compare?**
 
@@ -325,6 +347,9 @@ vertebrate %>%
 1                1.64                  1.71          15
 ```
 Mammals, on average, have a greater diversity than birds in transects with high and moderate hunting intensity.
+
+_Since you summarized without grouping, we can't see the comparison between these sites._
+</div>
 
 **11. (4 points) One of the conclusions in the study is that the relative abundance of animals drops off the closer you get to a village. Let's try to reconstruct this (without the statistics). How does the relative abundance (RA) of apes, birds, elephants, monkeys, rodents, and ungulates compare between sites that are less than 5km from a village to sites that are greater than 20km from a village? The variable `Distance` measures the distance of the transect from the nearest village. Hint: try using the `across` operator.**  
 
@@ -377,4 +402,6 @@ vertebrate %>%
 # … with 1 more variable: RA_Ungulate <dbl>
 ```
 Here, I analyzed the relative abundance of apes, birds, elephants, monkeys, rodents, and ungulates in areas where land with none to high hunting intensity was used for parks and logging. It appears that the relative abundance of birds and monkeys remain significantly high compared to other animals, regardless of land use and hunting intensity. In contrast, ape and elephant abundance drop significantly with increased hunting and when land is used for logging.
+
+_This is really nice!_
 
