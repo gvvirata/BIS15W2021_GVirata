@@ -58,12 +58,21 @@ elephants <- janitor::clean_names(elephants)
 elephants$sex <- as.factor(elephants$sex)
 elephants
 ```
-
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 **5. (2 points) How many male and female elephants are represented in the data?**
 ```{r comment=NA, message=FALSE}
 elephants %>%
-  count(sex, na.rm = T)
+  count(sex, na.rm = T) # notice that by adding na.rm=T here it gets added as a variable in the table
 ```
+There are no NA's in the sex variable.
+```{r}
+elephants %>% 
+  count(sex)
+```
+</div>
 
 **6. (2 points) What is the average age all elephants in the data?**
 ```{r comment=NA}
@@ -114,6 +123,10 @@ is.factor(vertebrate$HuntCat)
 is.factor(vertebrate$LandUse)
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 **10. (4 points) For the transects with high and moderate hunting intensity, how does the average diversity of birds and mammals compare?**
 ```{r comment=NA}
@@ -124,6 +137,9 @@ vertebrate %>%
             total_count = n())
 ```
 Mammals, on average, have a greater diversity than birds in transects with high and moderate hunting intensity.
+
+_Since you summarized without grouping, we can't see the comparison between these sites._
+</div>
 
 **11. (4 points) One of the conclusions in the study is that the relative abundance of animals drops off the closer you get to a village. Let's try to reconstruct this (without the statistics). How does the relative abundance (RA) of apes, birds, elephants, monkeys, rodents, and ungulates compare between sites that are less than 5km from a village to sites that are greater than 20km from a village? The variable `Distance` measures the distance of the transect from the nearest village. Hint: try using the `across` operator.**  
 ```{r comment=NA}
@@ -146,4 +162,6 @@ vertebrate %>%
   summarise(across(contains("RA"), mean, na.rm = T))
 ```
 Here, I analyzed the relative abundance of apes, birds, elephants, monkeys, rodents, and ungulates in areas where land with none to high hunting intensity was used for parks and logging. It appears that the relative abundance of birds and monkeys remain significantly high compared to other animals, regardless of land use and hunting intensity. In contrast, ape and elephant abundance drop significantly with increased hunting and when land is used for logging.
+
+_This is really nice!_
 
