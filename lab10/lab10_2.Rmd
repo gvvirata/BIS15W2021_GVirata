@@ -1,10 +1,11 @@
 ---
 title: "Data Visualization: `ggplot` part 2"
 output:
-  html_document:
+  html_document: 
     theme: spacelab
     toc: yes
     toc_float: yes
+    keep_md: yes
   pdf_document:
     toc: yes
 ---
@@ -132,16 +133,25 @@ For this practice, let's use the [palmerpenguins](https://allisonhorst.github.io
 
 1. Make a bar plot that shows counts of individuals by island. Fill by species, and try both a stacked bar plot and `position="dodge"`.
 ```{r}
-
+penguins %>%
+  ggplot(aes(x=island)) + geom_bar()
 ```
 
 ```{r}
+penguins %>%
+  ggplot(aes(x=island, fill=species)) + geom_bar()
+```
 
+```{r}
+penguins %>%
+  ggplot(aes(x=island, fill=species)) + geom_bar(position = "dodge")
 ```
 
 2. What are the number of individuals separated by sex on each island?
 ```{r}
-
+penguins %>%
+  filter(sex != "NA") %>%
+  ggplot(aes(x=island, fill=sex)) + geom_bar(position = "dodge")
 ```
 
 ## Using `group`
@@ -165,6 +175,16 @@ I can also use `fill` to associate the different taxa with a color coded key.
 ```{r}
 homerange %>% 
   ggplot(aes(x = class, y = log10.mass, fill = taxon)) +
+  geom_boxplot()
+```
+```{r}
+homerange %>% 
+  ggplot(aes(x = class, y = log10.mass, color = taxon)) +
+  geom_boxplot()
+```
+```{r}
+homerange %>% 
+  ggplot(aes(x = class, y = log10.mass, fill = class)) +
   geom_boxplot()
 ```
 
