@@ -151,6 +151,7 @@ Use `separate()` to separate institution name into two new columns "UNIV" and "C
 univ_calif_final2 <- 
   univ_calif_final %>%
   separate(instnm, into = c("univ", "campus"), sep = "-")
+univ_calif_final2
 ```
 
 9. The column `ADM_RATE` is the admissions rate by campus. Which UC has the lowest and highest admissions rates? Produce a numerical summary and an appropriate plot.
