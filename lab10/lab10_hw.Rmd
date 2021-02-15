@@ -127,6 +127,10 @@ deserts %>%
   theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
   labs(title = "Weight Per Species", x="Species", y="Weight")
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 6. Add another layer to your answer from #4 using `geom_point` to get an idea of how many measurements were taken for each species.
 ```{r, comments=NA, message=F}
@@ -145,6 +149,7 @@ deserts %>%
   theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
   labs(title = "Total Weight Measurements Per Species", x="Species", y="Total Weight Measurements")
 ```
+</div>
 
 7. [Dipodomys merriami](https://en.wikipedia.org/wiki/Merriam's_kangaroo_rat) is the most frequently sampled animal in the study. How have the number of observations of this species changed over the years included in the study?
 ```{r, comments=NA}

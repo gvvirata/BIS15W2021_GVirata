@@ -1,7 +1,7 @@
 ---
 title: "Lab 10 Homework"
 author: "Geralin Love Virata"
-date: "2021-02-11"
+date: "2021-02-15"
 output:
   html_document: 
     theme: spacelab
@@ -33,7 +33,7 @@ deserts <- read_csv(here("lab10", "data", "surveys_complete.csv"))
 
 ```
 ## 
-## ── Column specification ────────────────────────────────────────────────────────
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   record_id = col_double(),
 ##   month = col_double(),
@@ -60,19 +60,19 @@ glimpse(deserts)
 ```
 ## Rows: 34,786
 ## Columns: 13
-## $ record_id       <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16…
-## $ month           <dbl> 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,…
-## $ day             <dbl> 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 1…
-## $ year            <dbl> 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977,…
-## $ plot_id         <dbl> 2, 3, 2, 7, 3, 1, 2, 1, 1, 6, 5, 7, 3, 8, 6, 4, 3, 2,…
-## $ species_id      <chr> "NL", "NL", "DM", "DM", "DM", "PF", "PE", "DM", "DM",…
-## $ sex             <chr> "M", "M", "F", "M", "M", "M", "F", "M", "F", "F", "F"…
-## $ hindfoot_length <dbl> 32, 33, 37, 36, 35, 14, NA, 37, 34, 20, 53, 38, 35, N…
-## $ weight          <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-## $ genus           <chr> "Neotoma", "Neotoma", "Dipodomys", "Dipodomys", "Dipo…
-## $ species         <chr> "albigula", "albigula", "merriami", "merriami", "merr…
-## $ taxa            <chr> "Rodent", "Rodent", "Rodent", "Rodent", "Rodent", "Ro…
-## $ plot_type       <chr> "Control", "Long-term Krat Exclosure", "Control", "Ro…
+## $ record_id       <dbl> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
+## $ month           <dbl> 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, ...
+## $ day             <dbl> 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,...
+## $ year            <dbl> 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977, 197...
+## $ plot_id         <dbl> 2, 3, 2, 7, 3, 1, 2, 1, 1, 6, 5, 7, 3, 8, 6, 4, 3, ...
+## $ species_id      <chr> "NL", "NL", "DM", "DM", "DM", "PF", "PE", "DM", "DM...
+## $ sex             <chr> "M", "M", "F", "M", "M", "M", "F", "M", "F", "F", "...
+## $ hindfoot_length <dbl> 32, 33, 37, 36, 35, 14, NA, 37, 34, 20, 53, 38, 35,...
+## $ weight          <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ genus           <chr> "Neotoma", "Neotoma", "Dipodomys", "Dipodomys", "Di...
+## $ species         <chr> "albigula", "albigula", "merriami", "merriami", "me...
+## $ taxa            <chr> "Rodent", "Rodent", "Rodent", "Rodent", "Rodent", "...
+## $ plot_type       <chr> "Control", "Long-term Krat Exclosure", "Control", "...
 ```
 Using the glimpse() command, it appears NA's are only represented by "NA" and not values. We can then summarize the number of NA's in the data using the summarize() command, finding that there are 7,599 NA's present.
 
@@ -130,7 +130,7 @@ deserts
 ##  8         8     7    16  1977       1 DM         M                  37     NA
 ##  9         9     7    16  1977       1 DM         F                  34     NA
 ## 10        10     7    16  1977       6 PF         F                  20     NA
-## # … with 34,776 more rows, and 4 more variables: genus <chr>, species <chr>,
+## # ... with 34,776 more rows, and 4 more variables: genus <chr>, species <chr>,
 ## #   taxa <chr>, plot_type <chr>
 ```
 The data appears tidy, following the three conventions of the tidyverse. Each variable has its own column, each observation has its own row, and each value has its own cell.
@@ -172,7 +172,7 @@ deserts %>%
 ##  8 flavus        1597
 ##  9 eremicus      1299
 ## 10 albigula      1252
-## # … with 30 more rows
+## # ... with 30 more rows
 ```
 Merriami is the most frequently sampled in the study with a total of 10,596 observations.
 
@@ -196,7 +196,7 @@ deserts %>%
 ##  8 savannarum       2
 ##  9 fuscus           5
 ## 10 undulatus        5
-## # … with 30 more rows
+## # ... with 30 more rows
 ```
 Clarki, scultalatus, tereticaudus, tigris, uniparens, and viridis are the least frequently sampled species, all tying with a total of only 1 observation each.
 
@@ -267,7 +267,7 @@ deserts %>%
 ```
 ## # A tibble: 40 x 6
 ##    species         min_weight max_weight mean_weight median_weight     n
-##    <chr>                <dbl>      <dbl>       <dbl>         <dbl> <int>
+##  * <chr>                <dbl>      <dbl>       <dbl>         <dbl> <int>
 ##  1 albigula                30        280      159.             164  1252
 ##  2 audubonii              Inf       -Inf      NaN               NA    75
 ##  3 baileyi                 12         55       31.7             31  2891
@@ -278,7 +278,7 @@ deserts %>%
 ##  8 eremicus                 8         40       21.6             22  1299
 ##  9 flavus                   4         25        7.92             8  1597
 ## 10 fulvescens               9         20       13.4             13    75
-## # … with 30 more rows
+## # ... with 30 more rows
 ```
 The table above is a summary of weight ranges for each species. Since some species have no weights recorded at all, their minimum and maximum weights are represented by "Inf" and "-Inf". We can confirm that this is the case, by filtering for one of the species whose weight summaries are represented by "Inf" (for example: clarki) and select to view its recorded weights:
 
@@ -304,6 +304,10 @@ deserts %>%
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 6. Add another layer to your answer from #4 using `geom_point` to get an idea of how many measurements were taken for each species.
 
@@ -317,7 +321,7 @@ deserts%>%
 ```
 ## # A tibble: 22 x 2
 ##    species     total_weight_measurements
-##    <chr>                           <int>
+##  * <chr>                           <int>
 ##  1 albigula                         1152
 ##  2 baileyi                          2810
 ##  3 eremicus                         1260
@@ -328,7 +332,7 @@ deserts%>%
 ##  8 intermedius                         8
 ##  9 leucogaster                       970
 ## 10 leucopus                           36
-## # … with 12 more rows
+## # ... with 12 more rows
 ```
 
 ```r
@@ -343,6 +347,7 @@ deserts %>%
 ```
 
 ![](lab10_hw_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+</div>
 
 7. [Dipodomys merriami](https://en.wikipedia.org/wiki/Merriam's_kangaroo_rat) is the most frequently sampled animal in the study. How have the number of observations of this species changed over the years included in the study?
 
@@ -367,7 +372,7 @@ deserts %>%
 ##  8  1984   396
 ##  9  1985   667
 ## 10  1986   406
-## # … with 16 more rows
+## # ... with 16 more rows
 ```
 
 ```r
@@ -418,7 +423,7 @@ deserts %>%
 ##  8 merriami           43.2
 ##  9 baileyi            31.7
 ## 10 leucogaster        31.6
-## # … with 30 more rows
+## # ... with 30 more rows
 ```
 
 ```r
@@ -450,27 +455,27 @@ deserts %>%
 ```
 ## # A tibble: 18 x 7
 ## # Groups:   genus [9]
-##    genus sex   avg_hindfoot_le… min_hf_length max_hf_length median_hf_length
+##    genus sex   avg_hindfoot_le~ min_hf_length max_hf_length median_hf_length
 ##    <chr> <chr>            <dbl>         <dbl>         <dbl>            <dbl>
-##  1 Baio… F                 13.2             7            16               13
-##  2 Baio… M                 12.6             6            14               13
-##  3 Chae… F                 23.8            11            41               24
-##  4 Chae… M                 23.9             2            47               23
-##  5 Dipo… F                 37.9            16            64               36
-##  6 Dipo… M                 37.9            21            58               36
-##  7 Neot… F                 32.0            21            38               32
-##  8 Neot… M                 32.6            21            42               33
-##  9 Onyc… F                 20.3            13            50               20
-## 10 Onyc… M                 20.4            12            39               20
-## 11 Pero… F                 15.8             7            38               16
-## 12 Pero… M                 15.8             9            28               16
-## 13 Pero… F                 20.3            10            32               20
-## 14 Pero… M                 20.3            11            36               20
-## 15 Reit… F                 16.4             9            22               17
-## 16 Reit… M                 16.5             6            22               17
-## 17 Sigm… F                 27.9            15            36               28
-## 18 Sigm… M                 27.3            21            39               27
-## # … with 1 more variable: n <int>
+##  1 Baio~ F                 13.2             7            16               13
+##  2 Baio~ M                 12.6             6            14               13
+##  3 Chae~ F                 23.8            11            41               24
+##  4 Chae~ M                 23.9             2            47               23
+##  5 Dipo~ F                 37.9            16            64               36
+##  6 Dipo~ M                 37.9            21            58               36
+##  7 Neot~ F                 32.0            21            38               32
+##  8 Neot~ M                 32.6            21            42               33
+##  9 Onyc~ F                 20.3            13            50               20
+## 10 Onyc~ M                 20.4            12            39               20
+## 11 Pero~ F                 15.8             7            38               16
+## 12 Pero~ M                 15.8             9            28               16
+## 13 Pero~ F                 20.3            10            32               20
+## 14 Pero~ M                 20.3            11            36               20
+## 15 Reit~ F                 16.4             9            22               17
+## 16 Reit~ M                 16.5             6            22               17
+## 17 Sigm~ F                 27.9            15            36               28
+## 18 Sigm~ M                 27.3            21            39               27
+## # ... with 1 more variable: n <int>
 ```
 
 
