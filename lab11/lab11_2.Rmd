@@ -56,11 +56,15 @@ p
 
 ```{r}
 p+theme_linedraw()+
-  theme(axis.text.x = element_text(angle = 60, hjust=1))+
+  theme(legend.position = "top", #can get rid of legend using 'none'
+    axis.text.x = element_text(angle = 60, hjust=1))+
   labs(title = "Observations by Taxon in Homerange Data",
        x = NULL,
        y= "n",
-       fill= "Trophic Guild")
+       fill= "Trophic Guild") #title of legend
+```
+```{r}
+p+theme_classic()
 ```
 
 ## Legends
@@ -139,6 +143,9 @@ my_palette <- paletteer_d("ggsci::hallmarks_light_cosmic")
 ```{r}
 barplot(rep(1,14), axes=FALSE, col=my_palette)
 ```
+```{r}
+glimpse(p)
+```
 
 Now we just identify `my_palette` as part of `scale_fill_manual()`
 ```{r}
@@ -178,6 +185,7 @@ homerange %>%
 p2 <- homerange %>% 
   ggplot(aes(x = log10.mass)) +
   geom_density()
+p2
 ```
 
 ```{r}
@@ -188,6 +196,11 @@ p2+ facet_wrap(~taxon)
 As you can imagine, there are lots of options for faceting. Another useful facet type is `facet_grid`. 
 ```{r}
 p2+facet_grid(thermoregulation~class)
+```
+```{r}
+pdf("homerange.pdf") #file type and name of file with type extension
+p2 #name of the plot I want to export
+dev.off() 
 ```
 
 ## That's it, let's take a break!   
