@@ -141,6 +141,10 @@ gapminder %>%
         legend.position = "NA") +
   labs(title = "Life Expectancy Observed in 1952 and 2007",x="Year",y="Life Expectancy")
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 **4. Your answer above doesn't tell the whole story since life expectancy varies by region. Make a summary that shows the min, mean, and max life expectancy by continent for all years represented in the data.**
 ```{r}
@@ -161,6 +165,7 @@ gapminder%>%
   labs(title = "Life Expectancy by Continent beteween 1952 and 2007",
        x = "Year")
 ```
+</div>
 
 **5. How has life expectancy changed between 1952-2007 for each continent?**
 ```{r}

@@ -1,7 +1,7 @@
 ---
 title: "Lab 11 Homework"
 author: "Geralin Love Virata"
-date: "2021-02-16"
+date: "2021-02-17"
 output:
   html_document: 
     theme: spacelab
@@ -125,12 +125,12 @@ glimpse(gapminder)
 ```
 ## Rows: 1,704
 ## Columns: 6
-## $ country   <fct> Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghani…
-## $ continent <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia,…
-## $ year      <int> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997,…
-## $ lifeExp   <dbl> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.…
-## $ pop       <int> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 1…
-## $ gdpPercap <dbl> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134,…
+## $ country   <fct> Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afgha...
+## $ continent <fct> Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asi...
+## $ year      <int> 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 199...
+## $ lifeExp   <dbl> 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 4...
+## $ pop       <int> 8425333, 9240934, 10267083, 11537966, 13079460, 14880372,...
+## $ gdpPercap <dbl> 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.113...
 ```
 
 
@@ -168,7 +168,7 @@ gapminder
 ##  8 Afghanistan Asia       1987    40.8 13867957      852.
 ##  9 Afghanistan Asia       1992    41.7 16317921      649.
 ## 10 Afghanistan Asia       1997    41.8 22227415      635.
-## # … with 1,694 more rows
+## # ... with 1,694 more rows
 ```
 After going through the data set, NA's do not appear to be represented by values. The naniar function did not find any NA's represented by "NA", so we can assume that this data is complete.
 
@@ -191,7 +191,7 @@ gapminder
 ##  8 Afghanistan Asia       1987     40.8 13867957       852.
 ##  9 Afghanistan Asia       1992     41.7 16317921       649.
 ## 10 Afghanistan Asia       1997     41.8 22227415       635.
-## # … with 1,694 more rows
+## # ... with 1,694 more rows
 ```
 
 **2. Among the interesting variables in gapminder is life expectancy. How has global life expectancy changed between 1952 and 2007?**
@@ -217,20 +217,13 @@ life_exp_52_07 <-
   gapminder %>%
   group_by(year) %>%
   summarise(life_exp_means = mean(life_exp))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 life_exp_52_07
 ```
 
 ```
 ## # A tibble: 12 x 2
 ##     year life_exp_means
-##    <int>          <dbl>
+##  * <int>          <dbl>
 ##  1  1952           49.1
 ##  2  1957           51.5
 ##  3  1962           53.6
@@ -272,13 +265,9 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 6
 ##    year min_exp max_exp median_exp mean_exp total_observations
-##   <int>   <dbl>   <dbl>      <dbl>    <dbl>              <int>
+## * <int>   <dbl>   <dbl>      <dbl>    <dbl>              <int>
 ## 1  1952    28.8    72.7       45.1     49.1                142
 ## 2  2007    39.6    82.6       71.9     67.0                142
 ```
@@ -294,6 +283,10 @@ gapminder %>%
 ```
 
 ![](lab11_hw_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 **4. Your answer above doesn't tell the whole story since life expectancy varies by region. Make a summary that shows the min, mean, and max life expectancy by continent for all years represented in the data.**
 
@@ -307,7 +300,7 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
 ```
 
 ```
@@ -325,7 +318,7 @@ gapminder %>%
 ##  8 Africa     1987    39.9    71.9     53.3                 52
 ##  9 Africa     1992    23.6    73.6     53.6                 52
 ## 10 Africa     1997    36.1    74.8     53.6                 52
-## # … with 50 more rows
+## # ... with 50 more rows
 ```
 
 ```r
@@ -340,6 +333,7 @@ gapminder%>%
 ```
 
 ![](lab11_hw_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
+</div>
 
 **5. How has life expectancy changed between 1952-2007 for each continent?**
 
@@ -355,7 +349,7 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'continent' (override with `.groups` argument)
+## `summarise()` has grouped output by 'continent'. You can override using the `.groups` argument.
 ```
 
 ![](lab11_hw_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
@@ -430,7 +424,7 @@ pop_change %>%
 ##  8 Nigeria           101912068
 ##  9 Mexico             78556574
 ## 10 Philippines        68638596
-## # … with 274 more rows
+## # ... with 274 more rows
 ```
 
 ```r
