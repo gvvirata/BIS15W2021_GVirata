@@ -105,7 +105,7 @@ table_B <- read_csv(here("lab12", "data", "table_B.csv"))
 
 The general syntax for joins is...
 ```{r}
-#join_type(firstTable, secondTable, by=columnTojoinOn)
+join_type(firstTable, secondTable, by=columnTojoinOn)
 ```
 
 `inner_join`  

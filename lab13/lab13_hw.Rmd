@@ -1,0 +1,160 @@
+---
+title: "Lab 13 Homework"
+author: "Geralin Love Virata"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    theme: spacelab
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+Answer the following questions and complete the exercises in RMarkdown. Please embed all of your code and push your final work to your repository. Your final lab report should be organized, clean, and run free from errors. Remember, you must remove the `#` for the included code chunks to run. Be sure to add your name to the author header above. For any included plots, make sure they are clearly labeled. You are free to use any plot type that you feel best communicates the results of your analysis.  
+
+Make sure to use the formatting conventions of RMarkdown to make your report neat and clean!  
+
+## Libraries
+```{r, comment=NA}
+if (!require("tidyverse")) install.packages('tidyverse')
+```
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(shiny)
+library(shinydashboard)
+library(paletteer)
+library(RColorBrewer)
+options(scipen=999) #disables scientific notation when printing
+```
+```{r, comment=NA, message=FALSE, warning=FALSE}
+library("ggsci")
+library("ggplot2")
+library("gridExtra")
+
+data("diamonds")
+
+p1 = ggplot(subset(diamonds, carat >= 2.2),
+       aes(x = table, y = price, colour = cut)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "loess", alpha = 0.05, size = 1, span = 1) +
+  theme_bw()
+
+p2 = ggplot(subset(diamonds, carat > 2.2 & depth > 55 & depth < 70),
+       aes(x = depth, fill = cut)) +
+  geom_histogram(colour = "black", binwidth = 1, position = "dodge") +
+  theme_bw()
+```
+
+## Data
+The data for this assignment come from the [University of California Information Center](https://www.universityofcalifornia.edu/infocenter). Admissions data were collected for the years 2010-2019 for each UC campus. Admissions are broken down into three categories: applications, admits, and enrollees. The number of individuals in each category are presented by demographic.  
+```{r, comment=NA}
+UC_admit <- readr::read_csv("data/UC_admit.csv")
+```
+
+**1. Use the function(s) of your choice to get an idea of the overall structure of the data frame, including its dimensions, column names, variable classes, etc. As part of this, determine if there are NA's and how they are treated.**  
+```{r, comment=NA}
+dim(UC_admit)
+```
+```{r, comment=NA}
+names(UC_admit)
+```
+```{r, comment=NA}
+glimpse(UC_admit)
+```
+```{r, comment=NA}
+summary(UC_admit)
+```
+```{r, comment=NA}
+anyNA(UC_admit)
+```
+Some NA's are represented as "NA", and using the summary() command, there is at least one under the filtered_count_fr column. NA's are also represented by "Unknown", as found under the ethnicity column, and may also even be represented by "All" under the ethnicity column. It is, of course, likely for someone to be of multiple ethnicities, but I am not sure if being of all ethnicities is possible. 
+
+**2. The president of UC has asked you to build a shiny app that shows admissions by ethnicity across all UC campuses. Your app should allow users to explore year, campus, and admit category as interactive variables. Use shiny dashboard and try to incorporate the aesthetics you have learned in ggplot to make the app neat and clean.**
+```{r, comment=NA}
+UC_admit <- rename(UC_admit, AcademicYear = "Academic_Yr")
+UC_admit
+```
+I renamed Academic_Yr to AcademicYear as part of my aesthetic preference.
+```{r, comment=NA, eval=F, echo=T}
+ui <- dashboardPage(
+  dashboardHeader(title = "UC Admissions"),
+  dashboardSidebar(disable = T),
+  dashboardBody(
+  fluidRow(
+  box(title = "Plot Options", width = 3,
+  selectInput("x", "Select Grouping Type", choices = c("Campus", "AcademicYear", "Category"), 
+              selected = "Campus"),
+      hr(),
+      helpText("Admissions data collected for the years 2010-2019 for each UC campus. More Information can be found on the University of California Information Center website: https://www.universityofcalifornia.edu/infocenter")
+  ),
+  box(
+  plotOutput("plot", width = "600px", height = "500px")
+  ) 
+  )
+  )
+)
+
+server <- function(input, output, session) { 
+  
+  output$plot <- renderPlot({
+  UC_admit %>% 
+  ggplot(aes_string(x = input$x, y="FilteredCountFR", fill="Ethnicity"))+
+  geom_col()+
+       scale_fill_futurama(palette = "planetexpress") +
+  theme_minimal(base_size = 18)+
+      theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+      labs(title = "UC Admissions By Ethnicity",x=NULL,y="Number of Individuals")
+  })
+  
+  
+  session$onSessionEnded(stopApp)
+  }
+shinyApp(ui, server)
+```
+
+
+**3. Make an alternate version of your app above by tracking enrollment at a campus over all of the represented years while allowing users to interact with campus, category, and ethnicity.**
+
+```{r, comment=NA, eval=F, echo=T}
+ui <- dashboardPage(
+  dashboardHeader(title = "University of California"),
+  dashboardSidebar(disable = T),
+  dashboardBody(
+  fluidRow(
+  box(title = "Plot Options", width = 3,
+  selectInput("x", "Select Grouping Type", choices = c("Campus", "Ethnicity", "Category"), 
+              selected = "Campus"),
+      hr(),
+      helpText("Admissions data collected for the years 2010-2019 for each UC campus. More Information can be found on the University of California Information Center website: https://www.universityofcalifornia.edu/infocenter")
+  ),
+  box(
+  plotOutput("plot", width = "600px", height = "500px")
+  ) 
+  )
+  )
+)
+
+server <- function(input, output, session) { 
+  
+  output$plot <- renderPlot({
+  UC_admit %>% 
+  ggplot(aes_string(x = "AcademicYear", y="FilteredCountFR", fill=input$x))+
+  geom_col()+
+      scale_fill_futurama(palette = "planetexpress") +
+  theme_minimal(base_size = 18)+
+      theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+      labs(title = "UC Admissions From 2010-2019",x="Academic Year",y="Number of Individuals")
+  })
+  
+  
+  session$onSessionEnded(stopApp)
+  }
+shinyApp(ui, server)
+```
+
+## Push your final code to GitHub!
+Please be sure that you check the `keep md` file in the knit preferences. 
