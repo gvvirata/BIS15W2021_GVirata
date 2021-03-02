@@ -1,7 +1,7 @@
 ---
 title: "Lab 12 Homework"
 author: "Geralin Love Virata"
-date: "2021-02-24"
+date: "2021-03-01"
 output:
   html_document: 
     theme: spacelab
@@ -39,7 +39,7 @@ grizzly <- read_csv(here("lab12", "data", "bear-sightings.csv")) %>% clean_names
 
 ```
 
-── Column specification ────────────────────────────────────────────────────────
+-- Column specification --------------------------------------------------------
 cols(
   bear.id = col_double(),
   longitude = col_double(),
@@ -65,7 +65,7 @@ grizzly
  8     116     -147.     62.6
  9     125     -157.     60.2
 10     135     -156.     58.9
-# … with 484 more rows
+# ... with 484 more rows
 ```
 
 
@@ -124,7 +124,7 @@ wolves <- read_csv(here("lab12", "data", "wolves_data", "wolves_dataset.csv"))
 
 ```
 
-── Column specification ────────────────────────────────────────────────────────
+-- Column specification --------------------------------------------------------
 cols(
   .default = col_double(),
   pop = col_character(),
@@ -132,7 +132,7 @@ cols(
   sex = col_character(),
   color = col_character()
 )
-ℹ Use `spec()` for the full column specifications.
+i Use `spec()` for the full column specifications.
 ```
 
 ```r
@@ -154,7 +154,7 @@ wolves
  8 AK.PEN  2006 P       M     G      57.0 -158.    254.  10.4           8
  9 AK.PEN  2006 S       F     G      57.0 -158.    254.  10.4           8
 10 AK.PEN  2006 P       M     G      57.0 -158.    254.  10.4           8
-# … with 1,976 more rows, and 13 more variables: pack.size <dbl>,
+# ... with 1,976 more rows, and 13 more variables: pack.size <dbl>,
 #   standard.habitat <dbl>, standard.human <dbl>, standard.pop <dbl>,
 #   standard.packsize <dbl>, standard.latitude <dbl>, standard.longitude <dbl>,
 #   cav.binary <dbl>, cdv.binary <dbl>, cpv.binary <dbl>, chv.binary <dbl>,
@@ -267,7 +267,7 @@ wolf_48
  8 GTNP   2013 P       M     G      43.8 -111.  10375. 3924.        34.0
  9 GTNP   2013 P       M     G      43.8 -111.  10375. 3924.        34.0
 10 GTNP   2013 P       F     G      43.8 -111.  10375. 3924.        34.0
-# … with 1,159 more rows, and 13 more variables: pack.size <dbl>,
+# ... with 1,159 more rows, and 13 more variables: pack.size <dbl>,
 #   standard.habitat <dbl>, standard.human <dbl>, standard.pop <dbl>,
 #   standard.packsize <dbl>, standard.latitude <dbl>, standard.longitude <dbl>,
 #   cav.binary <dbl>, cdv.binary <dbl>, cpv.binary <dbl>, chv.binary <dbl>,
