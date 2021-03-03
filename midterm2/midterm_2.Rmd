@@ -20,6 +20,7 @@ Make sure to use the formatting conventions of RMarkdown to make your report nea
 This exam is due by **12:00p on Tuesday, February 23**.  
 
 ## Load the libraries
+# I am not 100% sure about these libraries and the diamonds data. Were you testing something here?
 ```{r, comment=NA, message=FALSE}
 library(tidyverse)
 library(janitor)
@@ -79,10 +80,10 @@ population_tidy <- population %>%
                )
 population_tidy
 ```
+
 ```{r, comment=NA, message=FALSE, warning=FALSE}
 glimpse(population_tidy)
 ```
-
 
 ```{r, comment=NA, message=FALSE, warning=FALSE}
 head(income)
@@ -96,6 +97,7 @@ income_tidy <- income %>%
                )
 income_tidy
 ```
+
 ```{r, comment=NA, message=FALSE, warning=FALSE}
 glimpse(income_tidy)
 ```
@@ -103,7 +105,6 @@ glimpse(income_tidy)
 ```{r, comment=NA, message=FALSE, warning=FALSE}
 head(life_expectancy)
 ```
-
 
 ```{r, comment=NA, message=FALSE, warning=FALSE}
 life_exp_tidy <- life_expectancy %>%
@@ -113,6 +114,7 @@ life_exp_tidy <- life_expectancy %>%
               )
 life_exp_tidy
 ```
+
 ```{r, comment=NA, message=FALSE, warning=FALSE}
 glimpse(life_exp_tidy)
 ```
@@ -133,6 +135,7 @@ tabyl(population_tidy$country)
 income_tidy %>%
   summarise(n_countries = n_distinct(country, na.rm=T))
 ```
+
 ```{r, comment=NA, message=FALSE, warning=FALSE}
 tabyl(income_tidy$country)
 ```
@@ -141,10 +144,10 @@ tabyl(income_tidy$country)
 life_exp_tidy %>%
   summarise(n_countries = n_distinct(country, na.rm=T))
 ```
+
 ```{r, comment=NA, message=FALSE, warning=FALSE}
 tabyl(life_exp_tidy$country)
 ```
-
 
 ## Life Expectancy  
 
@@ -167,6 +170,10 @@ life_exp_tidy %>%
   summarise(mean_exp = mean(life_expectancy, na.rm=T)) %>%
   arrange(mean_exp)
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 4. (3 points) Although we can see which country has the highest life expectancy for the past 100 years, we don't know which countries have changed the most. What are the top 5 countries that have experienced the biggest improvement in life expectancy between 1920-2020?
 ```{r, comment=NA, message=FALSE, warning=FALSE}
@@ -195,6 +202,7 @@ life_exp_tidy %>%
         plot.title=element_text(face="bold", hjust=0.5)) +
   labs(title="Life Expectancy Over Time for Countries \nWith Greatest Improvement", x="Year", y="Life Expectancy")
 ```
+</div>
 
 5. (3 points) Make a plot that shows the change over the past 100 years for the country with the biggest improvement in life expectancy. Be sure to add appropriate aesthetics to make the plot clean and clear. Once you have made the plot, do a little internet searching and see if you can discover what historical event may have contributed to this remarkable change.  
 
@@ -253,6 +261,11 @@ Out of the top 5 countries with the highest population growth over the past 100 
 ## Income
 The units used for income are gross domestic product per person adjusted for differences in purchasing power in international dollars.
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
 8. (4 points) As in the previous questions, which countries have experienced the biggest growth in per person GDP. Show this as a table and then plot the changes for the top 5 countries. With a bit of research, you should be able to explain the dramatic downturns of the wealthiest economies that occurred during the 1980's.
 ```{r, comment=NA, message=FALSE, warning=FALSE}
 change_gdp <- income_tidy %>%
@@ -282,6 +295,7 @@ income_tidy %>%
 ```
 
 [Brunei's](https://en.wikipedia.org/wiki/Economy_of_Brunei#Macroeconomic_trend), [Kuwait's](https://en.wikipedia.org/wiki/Economy_of_Kuwait),[Qatar](https://en.wikipedia.org/wiki/Economy_of_Qatar#Macro-economic_trend), and [UAE's](http://countrystudies.us/persian-gulf-states/84.htm#:~:text=The%20mid%2D1980s%20were%20a,58%20percent%20compared%20with%201985.) heavy investment in petroleum exports to support their governments' financial deficits allowed for the peak of their economy in the 1970s. However, significant decreases in petroleum prices in the world markets and increased government spending are the likely major causes of the quick decline in their GDPs.
+</div>
 
 9. (3 points) Create three new objects that restrict each data set (life expectancy, population, income) to the years 1920-2020. Hint: I suggest doing this with the long form of your data. Once this is done, merge all three data sets using the code I provide below. You may need to adjust the code depending on how you have named your objects. I called mine `life_expectancy_100`, `population_100`, and `income_100`. For some of you, learning these `joins` will be important for your project.  
 
@@ -335,3 +349,4 @@ gapminder_join %>%
   labs(title="Life Expectancy Versus GDP \nIn Countries With the Largest Populations of This Century", x="Life Expectancy", y="GDP")
 ```
 
+## Good job Geralin. There are some places that I have highlighted with errors. They mostly relate to your use of the min and max functions as part of your summary. Since we are looking for the biggest overall change, it should be the year 2020-1920. Have a look at the key for details. Lastly, your graphs are very colorful but you might consider what they convey- especially your last question. It may be that different aesthetics send a stronger message.
